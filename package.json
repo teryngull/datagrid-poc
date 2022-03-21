@@ -1,6 +1,6 @@
 {
-  "name": "muix",
-  "homepage": "https://teryngull.github.io/muix/",
+  "name": "datagrid-poc",
+  "homepage": "https://teryngull.github.io/datagrid-poc/",
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
