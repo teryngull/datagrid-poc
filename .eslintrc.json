@@ -1,0 +1,230 @@
+{
+    "env": {
+        "browser": true,
+        "es2021": true
+    },
+    "extends": [
+        "airbnb",
+        "eslint:recommended",
+        "plugin:react/recommended"
+    ],
+    "globals": {
+        "Atomics": "readonly",
+        "SharedArrayBuffer": "readonly"
+    },
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "ecmaVersion": 12,
+        "sourceType": "module"
+    },
+    "plugins": [
+        "react",
+        "react-hooks",
+        "@typescript-eslint"
+    ],
+    "rules": {
+        "linebreak-style": "off",
+        "indent": [
+            "error",
+            4,
+            {
+                "SwitchCase": 1,
+                "ignoredNodes": [
+                    "JSXElement",
+                    "JSXElement > *",
+                    "JSXAttribute",
+                    "JSXIdentifier",
+                    "JSXNamespacedName",
+                    "JSXMemberExpression",
+                    "JSXSpreadAttribute",
+                    "JSXExpressionContainer",
+                    "JSXOpeningElement",
+                    "JSXClosingElement",
+                    "JSXText",
+                    "JSXEmptyExpression",
+                    "JSXSpreadChild"
+                ]
+            }
+        ],
+        "semi": [
+            "warn",
+            "always"
+        ],
+        "no-debugger": "warn",
+        "no-param-reassign": [
+            "error",
+            {
+                "props": false
+            }
+        ],
+        "no-plusplus": [
+            "error",
+            {
+                "allowForLoopAfterthoughts": true
+            }
+        ],
+        "comma-dangle": [
+            "warn",
+            "never"
+        ],
+        "padded-blocks": [
+            "error",
+            {
+                "classes": "always"
+            }
+        ],
+        "operator-linebreak": [
+            "error",
+            "after",
+            {
+                "overrides": {
+                    "?": "ignore",
+                    ":": "ignore"
+                }
+            }
+        ],
+        "import/no-unresolved": "off",
+        "react/destructuring-assignment": "off",
+        "react/jsx-filename-extension": "off",
+        "react/prop-types": "off",
+        "react/jsx-indent": [
+            "error",
+            4
+        ],
+        "react/jsx-indent-props": [
+            "error",
+            4
+        ],
+        "jsx-quotes": [
+            "error",
+            "prefer-single"
+        ],
+        "arrow-body-style": [
+            "error",
+            "always"
+        ],
+        "max-len": "off",
+        "no-unused-vars": "off",
+        "@typescript-eslint/no-unused-vars": [
+            "warn"
+        ],
+        "react/jsx-wrap-multilines": [
+            "error",
+            {
+                "declaration": "parens",
+                "assignment": "parens",
+                "return": "parens",
+                "arrow": "parens",
+                "condition": "ignore",
+                "logical": "ignore",
+                "prop": "ignore"
+            }
+        ],
+        "no-console": "off",
+        "@typescript-eslint/no-explicit-any": "off",
+        "react/jsx-boolean-value": "off",
+        "keyword-spacing": [
+            "error",
+            {
+                "before": true,
+                "after": true
+            }
+        ],
+        "react/jsx-fragments": [
+            "warn",
+            "element"
+        ],
+        "react/jsx-props-no-spreading": "off",
+        "react/jsx-no-duplicate-props": [
+            "error",
+            {
+                "ignoreCase": false
+            }
+        ],
+        "react/no-unused-prop-types": "warn",
+        "react/require-default-props": 0,
+        "@typescript-eslint/no-inferrable-types": [
+            "error",
+            {
+                "ignoreParameters": true,
+                "ignoreProperties": false
+            }
+        ],
+        "react-hooks/rules-of-hooks": "error", // Checks rules of Hooks
+        "react-hooks/exhaustive-deps": "warn", // Checks effect dependencies
+        "import/extensions": [
+            1,
+            {
+                "pattern": {
+                    "tsx": "never"
+                }
+            }
+        ],
+        "lines-between-class-members": [
+            "error",
+            "always",
+            {
+                "exceptAfterSingleLine": true
+            }
+        ],
+        "@typescript-eslint/explicit-function-return-type": [
+            "error"
+        ],
+        "import/prefer-default-export": "off",
+        "no-use-before-define": "off", // note you must disable the base rule as it can report incorrect errors
+        "@typescript-eslint/no-use-before-define": [
+            "error"
+        ],
+        "no-underscore-dangle": "off",
+        "no-undef": "off", // note you must disable the base rule as it can report incorrect errors
+        "no-shadow": "off", // note you must disable the base rule as it can report incorrect errors
+        "@typescript-eslint/no-shadow": [
+            "error",
+            {
+                "ignoreTypeValueShadow": true
+            }
+        ],
+        "prefer-const": "warn",
+        "object-curly-newline": [
+            "warn",
+            {
+                "consistent": true
+            }
+        ],
+        "@typescript-eslint/member-delimiter-style": [
+            "warn",
+            {
+                "multiline": {
+                    "delimiter": "semi",
+                    "requireLast": true
+                },
+                "singleline": {
+                    "delimiter": "semi",
+                    "requireLast": true
+                }
+            }
+        ],
+        "react/jsx-props-no-multi-spaces": "warn",
+        "curly": [
+            "warn",
+            "all"
+        ],
+        "react/function-component-definition": [
+            "warn",
+            {
+                "namedComponents": "arrow-function",
+                "unnamedComponents": "arrow-function"
+            }
+        ],
+        "react/jsx-no-useless-fragment": "off",
+        "react/no-unstable-nested-components": [
+            "error",
+            {
+                "allowAsProps": true
+            }
+        ]
+    }
+}
