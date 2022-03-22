@@ -117,7 +117,7 @@ const Muix = (): JSX.Element => {
             // { id: 1, columnField: 'Link', operatorValue: 'contains', value: 'dog' }
         ]
     });
-    const [pageSize, setPageSize] = useState(5);
+    const [pageSize, setPageSize] = useState(20);
 
     // Fetch fake api data
     useEffect(() => {
