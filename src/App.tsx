@@ -3,14 +3,18 @@ import { CssBaseline, Tabs, Tab, useMediaQuery } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { ToastContainer } from 'react-toastify';
 
+import OverviewNotes from './components/overview';
 import Muix from './components/muix';
 import MuixNotes from './components/muixnotes';
 import AgGrid from './components/aggrid';
+import AgGridNotes from './components/aggridnotes';
 
 enum AppTabs {
+    Overview,
     MuiX,
     MuiXNotes,
-    Aggrid
+    Aggrid,
+    AggridNotes
 }
 
 const App = (): JSX.Element => {
@@ -44,6 +48,10 @@ const App = (): JSX.Element => {
                     onChange={handleTabChange}
                 >
                     <Tab
+                        label='Overview'
+                        value={AppTabs.Overview}
+                    />
+                    <Tab
                         label='MUI X'
                         value={AppTabs.MuiX}
                     />
@@ -55,9 +63,18 @@ const App = (): JSX.Element => {
                         label='AG Grid'
                         value={AppTabs.Aggrid}
                     />
+                    <Tab
+                        label='AG Grid Notes'
+                        value={AppTabs.AggridNotes}
+                    />
                 </Tabs>
 
                 <section>
+                    {
+                        currentTab === AppTabs.Overview &&
+                        <OverviewNotes />
+                    }
+
                     {
                         currentTab === AppTabs.MuiX &&
                         <Muix />
@@ -71,6 +88,11 @@ const App = (): JSX.Element => {
                     {
                         currentTab === AppTabs.Aggrid &&
                         <AgGrid />
+                    }
+
+                    {
+                        currentTab === AppTabs.AggridNotes &&
+                        <AgGridNotes />
                     }
                 </section>
             </div>
