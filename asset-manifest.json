@@ -1,14 +1,10 @@
 {
   "files": {
-    "main.css": "/datagrid-poc/static/css/main.073c9b0a.css",
-    "main.js": "/datagrid-poc/static/js/main.ed7a7891.js",
-    "static/media/logo.svg": "/datagrid-poc/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
+    "main.js": "/datagrid-poc/static/js/main.124e0d80.js",
     "index.html": "/datagrid-poc/index.html",
-    "main.073c9b0a.css.map": "/datagrid-poc/static/css/main.073c9b0a.css.map",
-    "main.ed7a7891.js.map": "/datagrid-poc/static/js/main.ed7a7891.js.map"
+    "main.124e0d80.js.map": "/datagrid-poc/static/js/main.124e0d80.js.map"
   },
   "entrypoints": [
-    "static/css/main.073c9b0a.css",
-    "static/js/main.ed7a7891.js"
+    "static/js/main.124e0d80.js"
   ]
 }
