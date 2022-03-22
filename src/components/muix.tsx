@@ -31,8 +31,7 @@ const classes = {
 const StyledSection = styled('section')(() => {
     return {
         [`&.${classes.sectionWrapper}`]: {
-            height: 'calc(100vh - 56px)',
-            overflowY: 'auto'
+            height: 'calc(100vh - 48px)'
         }
     };
 });

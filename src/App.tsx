@@ -4,10 +4,12 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { ToastContainer } from 'react-toastify';
 
 import Muix from './components/muix';
+import MuixNotes from './components/muixnotes';
 import AgGrid from './components/aggrid';
 
 enum AppTabs {
     MuiX,
+    MuiXNotes,
     Aggrid
 }
 
@@ -37,12 +39,17 @@ const App = (): JSX.Element => {
             <ToastContainer position='bottom-center' theme='colored' />
             <div>
                 <Tabs
+                    centered
                     value={currentTab}
                     onChange={handleTabChange}
                 >
                     <Tab
                         label='MUI X'
                         value={AppTabs.MuiX}
+                    />
+                    <Tab
+                        label='MUI X Notes'
+                        value={AppTabs.MuiXNotes}
                     />
                     <Tab
                         label='AG Grid'
@@ -54,6 +61,11 @@ const App = (): JSX.Element => {
                     {
                         currentTab === AppTabs.MuiX &&
                         <Muix />
+                    }
+
+                    {
+                        currentTab === AppTabs.MuiXNotes &&
+                        <MuixNotes />
                     }
 
                     {
