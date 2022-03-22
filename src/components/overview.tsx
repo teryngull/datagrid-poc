@@ -7,8 +7,13 @@ const MuixNotes = (): JSX.Element => {
             <Typography variant='h3'>Overview:</Typography>
             <p>
                 Below are the data grid projects I researched. Based on previous experiences and the
-                <Link href='https://www.npmtrends.com/@devexpress/dx-react-grid-vs-@devexpress/dx-react-grid-material-ui-vs-@mui/x-data-grid-vs-@progress/kendo-react-grid-vs-@syncfusion/ej2-react-grids-vs-ag-grid-react-vs-react-data-grid-vs-@mui/x-data-grid-pro'> NPM trends </Link>
-                NPM trends, I am recommending that we move forward with POC&apos;s with MUI and AG Grid.
+                <Link
+                    style={{ marginLeft: '4px' }}
+                    href='https://www.npmtrends.com/@devexpress/dx-react-grid-vs-@devexpress/dx-react-grid-material-ui-vs-@mui/x-data-grid-vs-@progress/kendo-react-grid-vs-@syncfusion/ej2-react-grids-vs-ag-grid-react-vs-react-data-grid-vs-@mui/x-data-grid-pro'
+                >
+                    NPM trends
+                </Link>
+                , I am recommending that we move forward with POC&apos;s with MUI and AG Grid.
             </p>
             <ul>
                 <li><Link href='https://mui.com/components/data-grid/getting-started/'>MUI Data Grid</Link></li>
@@ -20,7 +25,7 @@ const MuixNotes = (): JSX.Element => {
                 <li><Link href='https://github.com/nadbm/react-datasheet'>React Datasheet</Link></li>
             </ul>
 
-            <Typography variant='h5'>Feature Set:</Typography>
+            <Typography variant='h5'>Feature List:</Typography>
             <Grid container>
                 <Grid item xs={4}>
                     <p>Feature</p>
