@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { CssBaseline, Tabs, Tab, useMediaQuery } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { ToastContainer } from 'react-toastify';
@@ -18,7 +18,7 @@ const App = (): JSX.Element => {
 
     const [currentTab, setCurrentTab] = useState(AppTabs.MuiX);
 
-    const theme = React.useMemo(
+    const theme = useMemo(
         () => {
             return createTheme({
                 palette: {
