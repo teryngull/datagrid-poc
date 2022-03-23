@@ -4,6 +4,7 @@ import { Link } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { AgGridReact } from 'ag-grid-react';
 import { ColDef, ColGroupDef, ICellRendererParams } from 'ag-grid-community';
+import 'ag-grid-enterprise';
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-material.css';
 
@@ -66,16 +67,16 @@ const AgGrid = (): JSX.Element => {
     const [isFetching, setIsFetching] = useState(false);
     const [data, setData] = useState<ApiData[]>([]);
 
-    const defaultColumnParams = {
-        sortable: true,
-        filter: true
-    };
     const columns = useMemo((): (ColDef | ColGroupDef)[] => {
+        const defaultColumnParams = {
+            sortable: true,
+            filter: true
+        };
         return [
             {
                 field: 'actions',
                 headerName: 'Actions',
-                type: 'actions',
+                // type: 'actions',
                 // hideable: false,
                 width: 80,
                 // getActions: (): React.ReactElement<GridActionsCellItemProps>[] => {
@@ -119,7 +120,7 @@ const AgGrid = (): JSX.Element => {
                 }
             }
         ];
-    }, [defaultColumnParams]);
+    }, []);
 
     // Fetch fake api data
     useEffect(() => {
@@ -143,6 +144,7 @@ const AgGrid = (): JSX.Element => {
             <AgGridReact
                 rowData={data}
                 columnDefs={columns}
+                rowSelection='multiple'
             />
         </StyledSection>
     );

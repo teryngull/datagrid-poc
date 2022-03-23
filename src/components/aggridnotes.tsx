@@ -8,11 +8,11 @@ const AgGridNotes = (): JSX.Element => {
             <Link href='https://ag-grid.com/react-data-grid/'>Documentation</Link>
 
             <Typography variant='h5'>Overview:</Typography>
-            {/* <ul>
+            <ul>
                 <li>
-
+                    They do not prioritize providing TypeScript examples, so I had to dig into the interfaces a lot, to only find that they have something typed very loosely, often as &quot;any&quot;.
                 </li>
-            </ul> */}
+            </ul>
 
             <Typography variant='h5'>Features I implemented/used:</Typography>
             <ul>
