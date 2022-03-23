@@ -1,6 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { toast } from 'react-toastify';
-import { styled } from '@mui/material/styles';
 import {
     DataGridPro,
     GridActionsCellItem,
@@ -19,8 +18,11 @@ import {
     GRID_CHECKBOX_SELECTION_COL_DEF
 } from '@mui/x-data-grid-pro';
 import { Grid, Link, Typography } from '@mui/material';
+import { styled } from '@mui/material/styles';
 import Icon from '@mdi/react';
 import { mdiDelete, mdiSafetyGoggles, mdiContentDuplicate } from '@mdi/js';
+
+import { ApiData, DataResponse } from '../interfaces';
 
 const classesPrefix = 'muix';
 
@@ -35,23 +37,6 @@ const StyledSection = styled('section')(() => {
         }
     };
 });
-
-type Cors = 'yes' | 'no' | 'unknown';
-
-interface ApiData {
-    API: string;
-    Auth: string;
-    Category: string;
-    Cors: Cors;
-    Description: string;
-    HTTPS: boolean;
-    Link: string;
-}
-
-interface DataResponse {
-    count: number;
-    entries: ApiData[];
-}
 
 const loadServerRows = async (sortModel: GridSortModel): Promise<ApiData[]> => {
     // eslint-disable-next-line no-async-promise-executor
