@@ -187,6 +187,15 @@ const AgGridNotes = (): JSX.Element => {
                         <li>
                             Have to pull in separate CSS to style the table, and it will not tie into our MUI theme.
                         </li>
+                        <li>
+                            AG Grid does have a material theme, however according to a note on their website:
+                            &quot;This theme looks great for simple applications with lots of white space, and is the obvious choice if the rest of your application
+                            follows the Google Material Design spec. However, the Material spec does not cater for advanced grid features such as grouped columns
+                            and tool panels. If your application uses these features, consider using ag-theme-alpine instead.&quot;
+                        </li>
+                        <li>
+                            If we were to support dark mode as MUI does, we would likely need to use the alpine or balham theme because the AG Grid Material theme does not have built in dark styles.
+                        </li>
                     </ul>
                 </li>
             </ul>

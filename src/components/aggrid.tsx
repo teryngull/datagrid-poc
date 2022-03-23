@@ -1,7 +1,22 @@
 import React, { useState } from 'react';
+import { styled } from '@mui/material/styles';
 import { AgGridReact } from 'ag-grid-react';
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-material.css';
+
+const classesPrefix = 'aggrid';
+
+const classes = {
+    sectionWrapper: `${classesPrefix}-sectionWrapper`
+};
+
+const StyledSection = styled('section')(() => {
+    return {
+        [`&.${classes.sectionWrapper}`]: {
+            height: 'calc(100vh - 48px)'
+        }
+    };
+});
 
 const AgGrid = (): JSX.Element => {
     const [rowData] = useState([
@@ -17,12 +32,12 @@ const AgGrid = (): JSX.Element => {
     ]);
 
     return (
-        <div className='ag-theme-alpine' style={{ height: 400, width: 600 }}>
+        <StyledSection className={`ag-theme-material ${classes.sectionWrapper}`}>
             <AgGridReact
                 rowData={rowData}
                 columnDefs={columnDefs}
             />
-        </div>
+        </StyledSection>
     );
 };
 
