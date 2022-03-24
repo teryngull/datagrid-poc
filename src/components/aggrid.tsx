@@ -67,17 +67,21 @@ const AgGrid = (): JSX.Element => {
     const [isFetching, setIsFetching] = useState(false);
     const [data, setData] = useState<ApiData[]>([]);
 
+    const defaultColDef = {
+        sortable: true,
+        filter: true,
+        resizable: true
+    };
     const columns = useMemo((): (ColDef | ColGroupDef)[] => {
-        const defaultColumnParams = {
-            sortable: true,
-            filter: true
-        };
         return [
             {
                 field: 'actions',
                 headerName: 'Actions',
                 // type: 'actions',
                 // hideable: false,
+                pinned: 'left',
+                lockPinned: true,
+                resizable: false,
                 width: 80,
                 // getActions: (): React.ReactElement<GridActionsCellItemProps>[] => {
                 //     return [
@@ -101,17 +105,16 @@ const AgGrid = (): JSX.Element => {
                 //     ];
                 // }
             },
-            { field: 'API', headerName: 'API Name', ...defaultColumnParams, checkboxSelection: true },
-            { field: 'Auth', headerName: 'Auth', ...defaultColumnParams },
-            { field: 'Category', headerName: 'Category', ...defaultColumnParams },
-            { field: 'Cors', headerName: 'Cors', ...defaultColumnParams, width: 150 },
-            { field: 'Description', headerName: 'Description', ...defaultColumnParams },
-            { field: 'HTTPS', headerName: 'HTTPS', ...defaultColumnParams, type: 'boolean' },
-            { field: 'createdDate', headerName: 'Created Date', ...defaultColumnParams, type: 'dateTime', width: 250 },
+            { field: 'API', headerName: 'API Name', checkboxSelection: true },
+            { field: 'Auth', headerName: 'Auth' },
+            { field: 'Category', headerName: 'Category' },
+            { field: 'Cors', headerName: 'Cors', width: 150 },
+            { field: 'Description', headerName: 'Description' },
+            { field: 'HTTPS', headerName: 'HTTPS' },
+            { field: 'createdDate', headerName: 'Created Date', width: 250 },
             {
                 field: 'Link',
                 headerName: 'API Link',
-                ...defaultColumnParams,
                 flex: 1,
                 cellRenderer: (params: ICellRendererParams): React.ReactNode => {
                     return (
@@ -143,8 +146,11 @@ const AgGrid = (): JSX.Element => {
         <StyledSection className={`ag-theme-material ${classes.sectionWrapper}`}>
             <AgGridReact
                 rowData={data}
+                defaultColDef={defaultColDef}
                 columnDefs={columns}
+                getRowId={(params): string => { return params.data.id; }}
                 rowSelection='multiple'
+                pagination
             />
         </StyledSection>
     );

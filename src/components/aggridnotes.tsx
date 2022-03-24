@@ -12,6 +12,9 @@ const AgGridNotes = (): JSX.Element => {
                 <li>
                     They do not prioritize providing TypeScript examples, so I had to dig into the interfaces a lot, to only find that they have something typed very loosely, often as &quot;any&quot;.
                 </li>
+                <li>
+                    By default, every function of a data grid is off by default, so it takes a lot of extra work to turn everything on. As opposed to MUI where a lot of basic functionality is there from the start and you can choose to turn it off if need be.
+                </li>
             </ul>
 
             <Typography variant='h5'>Features I implemented/used:</Typography>
