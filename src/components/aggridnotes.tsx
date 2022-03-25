@@ -5,8 +5,8 @@ const AgGridNotes = (): JSX.Element => {
     return (
         <div style={{ height: 'calc(100vh 48px)', overflowY: 'auto', padding: '32px' }}>
             <Typography variant='h3'>AG Grid Notes</Typography>
-            <Link href='https://ag-grid.com/react-data-grid/'>Documentation</Link>
-            <Link href='https://ag-grid.com/react-data-grid/licensing/#feature-comparison'>Community vs. Enterprise feature comparison</Link>
+            <p><Link href='https://ag-grid.com/react-data-grid/'>Documentation</Link></p>
+            <p><Link href='https://ag-grid.com/react-data-grid/licensing/#feature-comparison'>Community vs. Enterprise feature comparison</Link></p>
 
             <Typography variant='h5'>Overview:</Typography>
             <ul>

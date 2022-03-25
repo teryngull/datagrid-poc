@@ -5,8 +5,8 @@ const MuixNotes = (): JSX.Element => {
     return (
         <div style={{ height: 'calc(100vh 48px)', overflowY: 'auto', padding: '32px' }}>
             <Typography variant='h3'>MUI X Notes</Typography>
-            <Link href='https://mui.com/components/data-grid/'>Documentation</Link>
-            <Link href='https://mui.com/components/data-grid/getting-started/#feature-comparison'>Community vs. Pro/Premium feature comparison</Link>
+            <p><Link href='https://mui.com/components/data-grid/'>Documentation</Link></p>
+            <p><Link href='https://mui.com/components/data-grid/getting-started/#feature-comparison'>Community vs. Pro/Premium feature comparison</Link></p>
 
             <Typography variant='h5'>Overview:</Typography>
             <ul>
