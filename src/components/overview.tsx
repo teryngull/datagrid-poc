@@ -74,23 +74,23 @@ const MuixNotes = (): JSX.Element => {
                 <Grid item xs={4}>
                     <p>AG Grid</p>
                     <ul>
-                        <li>Top action menu</li>
-                        <li>Export data (CSV)</li>
-                        <li>Column selection</li>
-                        <li>Refresh data</li>
-                        <li>Single Row selection</li>
-                        <li>Multiple Row selection</li>
-                        <li>Row actions</li>
-                        <li>Row virtualization</li>
-                        <li>Column filtering/searching</li>
-                        <li>Column resizing</li>
-                        <li>Column reordering</li>
-                        <li>Column sorting</li>
-                        <li>Column virtualization</li>
-                        <li>Sub tables/Master Detail</li>
-                        <li>FAB for new row</li>
-                        <li>Selects rows per page</li>
-                        <li>Pagination with total counts</li>
+                        <li>Can do ourselves</li>
+                        <li>Yes</li>
+                        <li>Yes</li>
+                        <li>Yes</li>
+                        <li>Yes</li>
+                        <li>Yes</li>
+                        <li>Can do ourselves</li>
+                        <li>Yes</li>
+                        <li>Yes</li>
+                        <li>Yes</li>
+                        <li>Yes</li>
+                        <li>Yes</li>
+                        <li>Yes</li>
+                        <li>Yes*</li>
+                        <li>Can do ourselves</li>
+                        <li>Yes</li>
+                        <li>Yes</li>
                     </ul>
                 </Grid>
             </Grid>
