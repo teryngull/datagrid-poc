@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/datagrid-poc/static/css/main.cebed049.css",
-    "main.js": "/datagrid-poc/static/js/main.7286feba.js",
+    "main.js": "/datagrid-poc/static/js/main.e6b3f8d9.js",
     "index.html": "/datagrid-poc/index.html",
     "main.cebed049.css.map": "/datagrid-poc/static/css/main.cebed049.css.map",
-    "main.7286feba.js.map": "/datagrid-poc/static/js/main.7286feba.js.map"
+    "main.e6b3f8d9.js.map": "/datagrid-poc/static/js/main.e6b3f8d9.js.map"
   },
   "entrypoints": [
     "static/css/main.cebed049.css",
-    "static/js/main.7286feba.js"
+    "static/js/main.e6b3f8d9.js"
   ]
 }
