@@ -20,7 +20,7 @@ enum AppTabs {
 const App = (): JSX.Element => {
     const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
 
-    const [currentTab, setCurrentTab] = useState(AppTabs.Aggrid);
+    const [currentTab, setCurrentTab] = useState(AppTabs.Overview);
 
     const theme = useMemo(
         () => {
