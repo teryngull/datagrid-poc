@@ -55,9 +55,6 @@ const AgGridNotes = (): JSX.Element => {
                         <li>
                             Cells can be rendered with custom components and lots of flexibility there for all use cases I could see
                         </li>
-                        <li>
-                            Column types are pretty confusing and not as simple as MUI to setup. There are ways to fully customize this, but it was difficult to understand the documentation
-                        </li>
                     </ul>
                 </li>
 
@@ -144,6 +141,9 @@ const AgGridNotes = (): JSX.Element => {
                         </li>
                         <li>
                             Ran into conflict issues with using server data and adding a select all checkbox in the header.
+                        </li>
+                        <li>
+                            Column types are pretty confusing and not as simple as MUI to setup. There are ways to fully customize this, but it was difficult to understand the documentation
                         </li>
                     </ul>
                 </li>
