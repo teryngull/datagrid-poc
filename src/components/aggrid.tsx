@@ -3,7 +3,7 @@ import { toast } from 'react-toastify';
 import { IconButton, Link } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import Icon from '@mdi/react';
-import { mdiDelete, mdiSafetyGoggles, mdiContentDuplicate } from '@mdi/js';
+import { mdiDelete, mdiSafetyGoggles } from '@mdi/js';
 import { AgGridReact } from 'ag-grid-react';
 import { ColDef, ColGroupDef, GridReadyEvent, ICellRendererParams, IServerSideDatasource, IServerSideGetRowsParams } from 'ag-grid-community';
 import 'ag-grid-enterprise';
@@ -98,7 +98,14 @@ const AgGrid = (): JSX.Element => {
                     );
                 }
             },
-            { field: 'API', headerName: 'API Name', checkboxSelection: true, cellRenderer: 'agGroupCellRenderer' },
+            {
+                field: 'API',
+                headerName: 'API Name',
+                // headerCheckboxSelection: true,
+                // headerCheckboxSelectionFilteredOnly: true,
+                checkboxSelection: true,
+                cellRenderer: 'agGroupCellRenderer'
+            },
             { field: 'Auth', headerName: 'Auth' },
             { field: 'Category', headerName: 'Category' },
             { field: 'Cors', headerName: 'Cors', width: 150 },
@@ -144,11 +151,8 @@ const AgGrid = (): JSX.Element => {
         detailGridOptions: {
             // detail grid columns
             columnDefs: [
-                { field: 'callId' },
-                { field: 'direction' },
-                { field: 'duration', valueFormatter: "x.toLocaleString() + 's'" },
-                { field: 'switchCode', minWidth: 150 },
-                { field: 'number', minWidth: 180 }
+                { field: 'Category' },
+                { field: 'Link' }
             ],
             defaultColDef: {
                 flex: 1
