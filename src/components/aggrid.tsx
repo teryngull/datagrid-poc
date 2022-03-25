@@ -1,9 +1,11 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { Fragment, useCallback, useMemo } from 'react';
 import { toast } from 'react-toastify';
-import { Link } from '@mui/material';
+import { IconButton, Link } from '@mui/material';
 import { styled } from '@mui/material/styles';
+import Icon from '@mdi/react';
+import { mdiDelete, mdiSafetyGoggles, mdiContentDuplicate } from '@mdi/js';
 import { AgGridReact } from 'ag-grid-react';
-import { ColDef, ColGroupDef, ICellRendererParams } from 'ag-grid-community';
+import { ColDef, ColGroupDef, GridReadyEvent, ICellRendererParams, IServerSideDatasource, IServerSideGetRowsParams } from 'ag-grid-community';
 import 'ag-grid-enterprise';
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-material.css';
@@ -24,49 +26,54 @@ const StyledSection = styled('section')(() => {
     };
 });
 
-const loadServerRows = async (sortModel: any): Promise<ApiData[]> => {
-    // eslint-disable-next-line no-async-promise-executor
-    return new Promise<ApiData[]>(async (resolve, reject) => {
-        try {
-            const response = await fetch('https://api.publicapis.org/entries');
-            const json = await response.json() as DataResponse;
-
-            const newDataArray = json.entries.map((apiItem, index) => {
-                return {
-                    id: index,
-                    createdDate: new Date(),
-                    ...apiItem
-                };
-            });
-
-            if (sortModel.length === 0) {
-                resolve(newDataArray);
-                return;
-            }
-
-            const sortedColumn = sortModel[0];
-
-            let sortedRows = [...newDataArray].sort((a, b) => {
-                // @ts-ignore
-                return String(a[sortedColumn.field]).localeCompare(String(b[sortedColumn.field]));
-            });
-
-            if (sortModel[0].sort === 'desc') {
-                sortedRows = sortedRows.reverse();
-            }
-
-            resolve(sortedRows);
-        } catch (error) {
-            toast.error('Failed to fetch api data');
-            reject(error);
+const createServerSideDatasource = (server: {
+    getData(request: any): {
+        success: boolean;
+        rows: any[];
+    };
+}): IServerSideDatasource => {
+    return {
+        getRows(params: IServerSideGetRowsParams): void {
+            console.log('[Datasource] - rows requested by grid: ', params.request);
+            // get data for request from our fake server
+            const response = server.getData(params.request);
+            // simulating real server call with a 500ms delay
+            setTimeout(() => {
+                if (response.success) {
+                    // supply rows for requested block to grid
+                    params.success({ rowData: response.rows });
+                } else {
+                    toast.error('Failed to fetch api data');
+                    params.fail();
+                }
+            }, 500);
         }
-    });
+    };
+};
+
+const createFakeServer = (allData: ApiData[]): {
+    getData(request: any): {
+        success: boolean;
+        rows: any[];
+    };
+} => {
+    return {
+        getData(request): {
+            success: boolean;
+            rows: ApiData[];
+        } {
+            console.log('request', request);
+            // take a copy of the data to return to the client
+            const requestedRows = allData.slice();
+            return {
+                success: true,
+                rows: requestedRows
+            };
+        }
+    };
 };
 
 const AgGrid = (): JSX.Element => {
-    const [isFetching, setIsFetching] = useState(false);
-    const [data, setData] = useState<ApiData[]>([]);
-
     const defaultColDef = {
         sortable: true,
         filter: true,
@@ -77,35 +84,21 @@ const AgGrid = (): JSX.Element => {
             {
                 field: 'actions',
                 headerName: 'Actions',
-                // type: 'actions',
-                // hideable: false,
+                suppressColumnsToolPanel: true,
                 pinned: 'left',
                 lockPinned: true,
                 resizable: false,
-                width: 80,
-                // getActions: (): React.ReactElement<GridActionsCellItemProps>[] => {
-                //     return [
-                //         <GridActionsCellItem
-                //             key='Delete'
-                //             icon={<Icon size={1} path={mdiDelete} />}
-                //             label='Delete'
-                //         />,
-                //         <GridActionsCellItem
-                //             key='Toggle'
-                //             icon={<Icon size={1} path={mdiSafetyGoggles} />}
-                //             label='Toggle Admin'
-                //             showInMenu
-                //         />,
-                //         <GridActionsCellItem
-                //             key='Duplicate'
-                //             icon={<Icon size={1} path={mdiContentDuplicate} />}
-                //             label='Duplicate User'
-                //             showInMenu
-                //         />
-                //     ];
-                // }
+                width: 150,
+                cellRenderer: (): JSX.Element => {
+                    return (
+                        <Fragment>
+                            <IconButton><Icon size={1} path={mdiDelete} /></IconButton>
+                            <IconButton><Icon size={1} path={mdiSafetyGoggles} /></IconButton>
+                        </Fragment>
+                    );
+                }
             },
-            { field: 'API', headerName: 'API Name', checkboxSelection: true },
+            { field: 'API', headerName: 'API Name', checkboxSelection: true, cellRenderer: 'agGroupCellRenderer' },
             { field: 'Auth', headerName: 'Auth' },
             { field: 'Category', headerName: 'Category' },
             { field: 'Cors', headerName: 'Cors', width: 150 },
@@ -126,30 +119,58 @@ const AgGrid = (): JSX.Element => {
     }, []);
 
     // Fetch fake api data
-    useEffect(() => {
-        const fetchData = async (): Promise<void> => {
-            setIsFetching(true);
-            try {
-                const newRows = await loadServerRows([]);
-                setIsFetching(false);
-                setData(newRows);
-            } catch (error) {
-                setIsFetching(false);
-                setData([]);
-            }
-        };
+    const onGridReady = useCallback((params: GridReadyEvent) => {
+        fetch('https://api.publicapis.org/entries')
+            .then((resp) => { return resp.json(); })
+            .then((apiResponse: DataResponse) => {
+                const newDataArray = apiResponse.entries.map((apiItem, index) => {
+                    return {
+                        id: index,
+                        createdDate: new Date(),
+                        ...apiItem
+                    };
+                });
 
-        fetchData();
+                // setup the fake server with entire dataset
+                const fakeServer = createFakeServer(newDataArray);
+                // create datasource with a reference to the fake server
+                const datasource = createServerSideDatasource(fakeServer);
+                // register the datasource with the grid
+                params.api.setServerSideDatasource(datasource);
+            });
     }, []);
+
+    const detailCellRendererParams = {
+        detailGridOptions: {
+            // detail grid columns
+            columnDefs: [
+                { field: 'callId' },
+                { field: 'direction' },
+                { field: 'duration', valueFormatter: "x.toLocaleString() + 's'" },
+                { field: 'switchCode', minWidth: 150 },
+                { field: 'number', minWidth: 180 }
+            ],
+            defaultColDef: {
+                flex: 1
+            }
+        },
+        getDetailRowData: (params: any): void => {
+            // supply data to the detail grid
+            params.successCallback(params.data.callRecords);
+        }
+    };
 
     return (
         <StyledSection className={`ag-theme-material ${classes.sectionWrapper}`}>
             <AgGridReact
-                rowData={data}
+                onGridReady={onGridReady}
+                rowModelType='serverSide'
                 defaultColDef={defaultColDef}
                 columnDefs={columns}
                 getRowId={(params): string => { return params.data.id; }}
                 rowSelection='multiple'
+                masterDetail
+                detailCellRendererParams={detailCellRendererParams}
                 pagination
             />
         </StyledSection>
